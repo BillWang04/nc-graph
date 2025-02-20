@@ -15,7 +15,7 @@ const Footer = () => {
           </div>
           <div className="flex space-x-6">
             <a 
-              href="https://github.com/spiegel21/graph_transformer_collapse/tree/calebs_transformer" 
+              href="https://github.com/spiegel21/graph_transformer_collapse" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition duration-300"
@@ -25,7 +25,7 @@ const Footer = () => {
               </svg>
             </a>
             <a 
-              href="mailto:cstam@ucsd.edu"
+              href="mailto:blw002@ucsd.edu"
               className="text-gray-400 hover:text-white transition duration-300"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
