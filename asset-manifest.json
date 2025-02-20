@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nc-graph/static/css/main.2622cc43.css",
+    "main.js": "/nc-graph/static/js/main.35b90f84.js",
+    "static/js/453.50de4033.chunk.js": "/nc-graph/static/js/453.50de4033.chunk.js",
+    "index.html": "/nc-graph/index.html",
+    "main.2622cc43.css.map": "/nc-graph/static/css/main.2622cc43.css.map",
+    "main.35b90f84.js.map": "/nc-graph/static/js/main.35b90f84.js.map",
+    "453.50de4033.chunk.js.map": "/nc-graph/static/js/453.50de4033.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2622cc43.css",
+    "static/js/main.35b90f84.js"
+  ]
+}
