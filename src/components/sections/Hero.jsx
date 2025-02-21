@@ -39,7 +39,7 @@ const Hero = () => {
         
         {/* Scroll indicator */}
         <div className="relative h-10">
-            <div className="absolute left-1/2 transform -translate-x-1/2" style={{ top: '120px' }}>
+            <div className="absolute left-1/2 transform -translate-x-1/2" style={{ top: '160px' }}>
                 <svg className="w-10 h-10 text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
