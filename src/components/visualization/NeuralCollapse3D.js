@@ -58,7 +58,7 @@ const NeuralCollapse3D = () => {
             setIsPlaying(false);
             return 100;
           }
-          return prev + 0.5;
+          return prev + .7;
         });
       }, 50);
     }
