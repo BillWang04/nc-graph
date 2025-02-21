@@ -28,7 +28,7 @@ const Hero = () => {
             Learn More
           </a>
           <a 
-            href="https://github.com/spiegel21/graph_transformer_collapse/tree/calebs_transformer" 
+            href="https://github.com/spiegel21/graph_transformer_collapse" 
             target="_blank" 
             rel="noopener noreferrer"
             className="px-8 py-3 bg-transparent border-2 border-primary text-white font-semibold rounded-lg hover:bg-primary hover:bg-opacity-20 transform hover:-translate-y-1 transition-all duration-300"
@@ -38,11 +38,13 @@ const Hero = () => {
         </div>
         
         {/* Scroll indicator */}
-        {/* <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div> */}
+        <div className="relative h-10">
+            <div className="absolute left-1/2 transform -translate-x-1/2" style={{ top: '120px' }}>
+                <svg className="w-10 h-10 text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </div>
+        </div>
       </div>
     </section>
   );

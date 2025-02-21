@@ -45,7 +45,7 @@ const NeuralCollapse3D = () => {
 
   const [points, setPoints] = useState(generateInitialPoints());
 
-  const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1'];
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFFF00'];
   const etfColor = '#2ecc71';
 
   // Animation effect
