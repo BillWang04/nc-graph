@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/nc-graph/static/css/main.79e66b80.css",
-    "main.js": "/nc-graph/static/js/main.b900714f.js",
+    "main.js": "/nc-graph/static/js/main.dff26149.js",
     "static/js/453.50de4033.chunk.js": "/nc-graph/static/js/453.50de4033.chunk.js",
     "index.html": "/nc-graph/index.html",
     "main.79e66b80.css.map": "/nc-graph/static/css/main.79e66b80.css.map",
-    "main.b900714f.js.map": "/nc-graph/static/js/main.b900714f.js.map",
+    "main.dff26149.js.map": "/nc-graph/static/js/main.dff26149.js.map",
     "453.50de4033.chunk.js.map": "/nc-graph/static/js/453.50de4033.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.79e66b80.css",
-    "static/js/main.b900714f.js"
+    "static/js/main.dff26149.js"
   ]
 }
