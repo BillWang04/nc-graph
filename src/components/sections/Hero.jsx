@@ -36,7 +36,7 @@ const Hero = () => {
             View Code
           </a>
           <a 
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+            href="https://www.overleaf.com/read/tgmcwdvmkgkc#fe6839" 
             target="_blank" 
             rel="noopener noreferrer"
             className="px-8 py-3 bg-gradient-to-r from-secondary to-tertiary text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
