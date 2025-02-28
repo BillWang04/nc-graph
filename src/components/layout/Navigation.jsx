@@ -7,7 +7,7 @@ const Navigation = () => {
     { name: 'Overview', href: '#overview' },
     { name: 'Methods', href: '#methods' },
     { name: 'Results', href: '#results' },
-    { name: 'Team', href: '#team' }
+    { name: 'Team', href: '#team' },
   ];
 
   const toggleMenu = () => {

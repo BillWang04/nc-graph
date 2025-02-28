@@ -35,11 +35,19 @@ const Hero = () => {
           >
             View Code
           </a>
+          <a 
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="px-8 py-3 bg-gradient-to-r from-secondary to-tertiary text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+            >
+            Read Paper
+            </a>
         </div>
         
         {/* Scroll indicator */}
         <div className="relative h-10">
-            <div className="absolute left-1/2 transform -translate-x-1/2" style={{ top: '160px' }}>
+            <div className="absolute left-1/2 transform -translate-x-1/2" style={{ top: '120px' }}>
                 <svg className="w-10 h-10 text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>

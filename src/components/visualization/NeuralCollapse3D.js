@@ -7,20 +7,28 @@ const NeuralCollapse3D = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
   const [autoRotate, setAutoRotate] = useState(true);
+  const [wobbleOffset, setWobbleOffset] = useState([]);
+  const [wobbleTime, setWobbleTime] = useState(0);
   
   const numClasses = 3;
   const pointsPerClass = 20;
   const axisLength = 150;
   const gridSize = 30;
   const numGridLines = 10;
+  
+  // Wobble parameters
+  const wobbleAmount = 10; // Maximum wobble displacement
+  const wobbleSpeed = 0.3; // How fast the wobble changes
+  const wobbleDecay = 0.4; // How much wobble reduces as progress increases
 
-  // ETF vertices (target positions)
+  // ETF vertices (target positions) - Updated to the specified coordinates
   const etfVertices = useMemo(() => {
-    const radius = 100;
+    // Updated coordinates: (2,-1,-1), (-1,2,-1), (-1,-1,2)
+    const scale = 50; // Scaling factor for better visualization
     return [
-      [radius * Math.cos(0), radius * Math.sin(0), radius/2],
-      [radius * Math.cos(2*Math.PI/3), radius * Math.sin(2*Math.PI/3), radius/2],
-      [radius * Math.cos(4*Math.PI/3), radius * Math.sin(4*Math.PI/3), radius/2],
+      [2 * scale, -1 * scale, -1 * scale],
+      [-1 * scale, 2 * scale, -1 * scale],
+      [-1 * scale, -1 * scale, 2 * scale],
     ];
   }, []);
 
@@ -43,12 +51,34 @@ const NeuralCollapse3D = () => {
     return points;
   }, [numClasses, pointsPerClass]);
 
+  // Initialize wobble offsets
+  const initializeWobbleOffsets = useCallback((pointCount) => {
+    const offsets = [];
+    for (let i = 0; i < pointCount; i++) {
+      offsets.push({
+        xFreq: Math.random() * 0.1 + 0.05,
+        yFreq: Math.random() * 0.1 + 0.05,
+        zFreq: Math.random() * 0.1 + 0.05,
+        xPhase: Math.random() * Math.PI * 2,
+        yPhase: Math.random() * Math.PI * 2,
+        zPhase: Math.random() * Math.PI * 2,
+        amplitude: Math.random() * 0.5 + 0.5, // Individual amplitude multiplier
+      });
+    }
+    return offsets;
+  }, []);
+
   const [points, setPoints] = useState(generateInitialPoints());
+
+  // Initialize wobble offsets when points change
+  useEffect(() => {
+    setWobbleOffset(initializeWobbleOffsets(points.length));
+  }, [points, initializeWobbleOffsets]);
 
   const colors = ['#FF6B6B', '#4ECDC4', '#FFFF00'];
   const etfColor = '#2ecc71';
 
-  // Animation effect
+  // Animation effect for progress
   useEffect(() => {
     let interval;
     if (isPlaying) {
@@ -58,12 +88,21 @@ const NeuralCollapse3D = () => {
             setIsPlaying(false);
             return 100;
           }
-          return prev + .7;
+          return prev + 0.5;
         });
       }, 50);
     }
     return () => clearInterval(interval);
   }, [isPlaying]);
+
+  // Continuous wobble animation
+  useEffect(() => {
+    const wobbleInterval = setInterval(() => {
+      setWobbleTime(prev => prev + wobbleSpeed);
+    }, 30);
+    
+    return () => clearInterval(wobbleInterval);
+  }, [wobbleSpeed]);
 
   // Auto-rotation effect
   useEffect(() => {
@@ -72,7 +111,7 @@ const NeuralCollapse3D = () => {
       interval = setInterval(() => {
         setRotation(prev => ({
           x: prev.x + 0.01,
-          y: prev.y + 0.005
+          y: prev.y + 0.01
         }));
       }, 50);
     }
@@ -83,18 +122,33 @@ const NeuralCollapse3D = () => {
   const calculateCurrentState = useCallback(() => {
     const t = progress / 100;
     
-    // Move points towards their ETF targets
-    const currentPoints = points.map(point => {
+    // Calculate wobble intensity that decreases as progress increases
+    const wobbleIntensity = Math.max(0, wobbleAmount * (1 - t * (1 - wobbleDecay)));
+    
+    // Move points towards their ETF targets with wobble
+    const currentPoints = points.map((point, idx) => {
       const targetVertex = etfVertices[point.class];
+      const offset = wobbleOffset[idx] || { xFreq: 0, yFreq: 0, zFreq: 0, xPhase: 0, yPhase: 0, zPhase: 0, amplitude: 1 };
+      
+      // Calculate wobble for this specific point
+      const wobbleX = Math.sin(wobbleTime * offset.xFreq + offset.xPhase) * wobbleIntensity * offset.amplitude;
+      const wobbleY = Math.sin(wobbleTime * offset.yFreq + offset.yPhase) * wobbleIntensity * offset.amplitude;
+      const wobbleZ = Math.sin(wobbleTime * offset.zFreq + offset.zPhase) * wobbleIntensity * offset.amplitude;
+      
+      // Calculate base position with linear interpolation
+      const baseX = point.x * (1 - t) + targetVertex[0] * t;
+      const baseY = point.y * (1 - t) + targetVertex[1] * t;
+      const baseZ = point.z * (1 - t) + targetVertex[2] * t;
+      
       return {
         ...point,
-        currentX: point.x * (1 - t) + targetVertex[0] * t,
-        currentY: point.y * (1 - t) + targetVertex[1] * t,
-        currentZ: point.z * (1 - t) + targetVertex[2] * t
+        currentX: baseX + wobbleX,
+        currentY: baseY + wobbleY,
+        currentZ: baseZ + wobbleZ
       };
     });
 
-    // Calculate means from current point positions
+    // Calculate means from current point positions (without wobble for stability)
     const currentMeans = Array(numClasses).fill(0).map((_, c) => {
       const classPoints = currentPoints.filter(p => p.class === c);
       return {
@@ -104,8 +158,22 @@ const NeuralCollapse3D = () => {
       };
     });
 
-    return { currentPoints, currentMeans };
-  }, [progress, points, etfVertices, numClasses]);
+    // Add slight wobble to means as well for visual appeal
+    const wobbledMeans = currentMeans.map((mean, idx) => {
+      const meanWobbleScale = wobbleIntensity * 0.3; // Less wobble for means
+      const wobbleX = Math.sin(wobbleTime * 0.03 + idx) * meanWobbleScale;
+      const wobbleY = Math.sin(wobbleTime * 0.04 + idx * 2) * meanWobbleScale;
+      const wobbleZ = Math.sin(wobbleTime * 0.05 + idx * 3) * meanWobbleScale;
+      
+      return {
+        x: mean.x + wobbleX,
+        y: mean.y + wobbleY,
+        z: mean.z + wobbleZ
+      };
+    });
+
+    return { currentPoints, currentMeans: wobbledMeans };
+  }, [progress, points, etfVertices, numClasses, wobbleOffset, wobbleTime, wobbleAmount, wobbleDecay]);
 
   const project3DTo2D = useCallback((x, y, z) => {
     const rotatedX = x * Math.cos(rotation.y) - z * Math.sin(rotation.y);
@@ -146,39 +214,8 @@ const NeuralCollapse3D = () => {
     setIsDragging(false);
   };
 
-  const renderGrid = () => {
-    const gridLines = [];
-    for (let i = -numGridLines; i <= numGridLines; i++) {
-      const pos = i * gridSize;
-      
-      // XY grid
-      const xStart = project3DTo2D(-axisLength, pos, 0);
-      const xEnd = project3DTo2D(axisLength, pos, 0);
-      gridLines.push(
-        <line key={`xy-x-${i}`}
-          x1={xStart.x} y1={xStart.y}
-          x2={xEnd.x} y2={xEnd.y}
-          stroke="#ddd"
-          strokeWidth="0.5"
-          opacity="0.2"
-        />
-      );
-
-      const yStart = project3DTo2D(pos, -axisLength, 0);
-      const yEnd = project3DTo2D(pos, axisLength, 0);
-      gridLines.push(
-        <line key={`xy-y-${i}`}
-          x1={yStart.x} y1={yStart.y}
-          x2={yEnd.x} y2={yEnd.y}
-          stroke="#ddd"
-          strokeWidth="0.5"
-          opacity="0.2"
-        />
-      );
-    }
-    return gridLines;
-  };
-
+  // Removed 2D grid rendering since we want to either implement 3D grids or remove them completely
+  
   const renderAxes = () => {
     const origin = project3DTo2D(0, 0, 0);
     const xEnd = project3DTo2D(axisLength, 0, 0);
@@ -187,8 +224,6 @@ const NeuralCollapse3D = () => {
 
     return (
       <g className="coordinate-axes">
-        {renderGrid()}
-        
         <line x1={origin.x} y1={origin.y} x2={xEnd.x} y2={xEnd.y}
           stroke="red" strokeWidth="1.5" opacity="0.7"/>
         <text x={xEnd.x + 10} y={xEnd.y} fill="red" className="font-bold">X</text>
@@ -211,7 +246,7 @@ const NeuralCollapse3D = () => {
       <div className="mb-4 text-center">
         <h2 className="text-2xl font-bold mb-2 text-white">Neural Collapse to ETF</h2>
         <p className="text-gray-300 mb-4">
-          Watch as points collapse and class means (large dots) emerge toward the ETF (green)
+          Watch as points wobble and collapse, with class means (large dots) emerging toward the ETF (green)
         </p>
       </div>
       
@@ -369,9 +404,6 @@ const NeuralCollapse3D = () => {
               onChange={(e) => setProgress(Number(e.target.value))}
               className="w-full h-2 rounded-lg appearance-none cursor-pointer bg-gray-700"
             />
-            {/* <span className="text-sm font-medium text-white min-w-[3rem] text-center">
-              {progress}%
-            </span> */}
           </div>
         </div>
         
@@ -382,6 +414,7 @@ const NeuralCollapse3D = () => {
               setProgress(0);
               setIsPlaying(false);
               setPoints(generateInitialPoints());
+              setWobbleTime(0);
             }}
           >
             Reset
