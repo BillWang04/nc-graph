@@ -224,17 +224,17 @@ const NeuralCollapse3D = () => {
 
     return (
       <g className="coordinate-axes">
-        <line x1={origin.x} y1={origin.y} x2={xEnd.x} y2={xEnd.y}
-          stroke="red" strokeWidth="1.5" opacity="0.7"/>
-        <text x={xEnd.x + 10} y={xEnd.y} fill="red" className="font-bold">X</text>
+        <line x1={-xEnd.x} y1={-xEnd.y} x2={xEnd.x} y2={xEnd.y}
+          stroke="white" strokeWidth="1.5" opacity="0.7"/>
+        {/* <text x={xEnd.x + 10} y={xEnd.y} fill="white" className="font-bold">X</text> */}
 
-        <line x1={origin.x} y1={origin.y} x2={yEnd.x} y2={yEnd.y}
-          stroke="green" strokeWidth="1.5" opacity="0.7"/>
-        <text x={yEnd.x + 10} y={yEnd.y} fill="green" className="font-bold">Y</text>
+        <line x1={-yEnd.x} y1={-yEnd.y} x2={yEnd.x} y2={yEnd.y}
+          stroke="white" strokeWidth="1.5" opacity="0.7"/>
+        {/* <text x={yEnd.x + 10} y={yEnd.y} fill="white" className="font-bold">Y</text> */}
 
-        <line x1={origin.x} y1={origin.y} x2={zEnd.x} y2={zEnd.y}
-          stroke="blue" strokeWidth="1.5" opacity="0.7"/>
-        <text x={zEnd.x + 10} y={zEnd.y} fill="blue" className="font-bold">Z</text>
+        <line x1={-zEnd.x} y1={-zEnd.y} x2={zEnd.x} y2={zEnd.y}
+          stroke="white" strokeWidth="1.5" opacity="0.7"/>
+        {/* <text x={zEnd.x + 10} y={zEnd.y} fill="white" className="font-bold">Z</text> */}
       </g>
     );
   };
@@ -246,7 +246,7 @@ const NeuralCollapse3D = () => {
       <div className="mb-4 text-center">
         <h2 className="text-2xl font-bold mb-2 text-white">Neural Collapse to ETF</h2>
         <p className="text-gray-300 mb-4">
-          Watch as points wobble and collapse, with class means (large dots) emerging toward the ETF (green)
+          Watch as points collapse with class means (large dots) emerging toward the ETF (green)
         </p>
       </div>
       
