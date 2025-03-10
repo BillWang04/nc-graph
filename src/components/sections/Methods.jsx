@@ -84,7 +84,7 @@ const Methods = () => {
                   </span>
                   <strong className="text-white">ÑC₁ := Tr(Σ<sub>W</sub>)/Tr(Σ<sub>B</sub>)</strong>
                   <Link 
-                    to={`${process.env.PUBLIC_URL}/nc1-explanation`} 
+                    to={`/nc1-explanation`} 
                     className="ml-2 text-xs text-primary hover:text-primary-light underline"
                   >
                     (Interactive Explanation)
