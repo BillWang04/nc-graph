@@ -46,7 +46,7 @@ const NC1ExplanationPage = () => {
         
         <div className="mt-8 text-center">
           <a 
-            href="/" 
+            href="/nc-graph" 
             className="inline-block px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition duration-300"
           >
             Home
