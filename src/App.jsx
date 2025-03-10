@@ -1,29 +1,19 @@
-import React from 'react';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import Hero from './components/sections/Hero';
-import Overview from './components/sections/Overview';
-import Methods from './components/sections/Methods';
-import Results from './components/sections/Results';
-import Team from './components/sections/Team';
+import HomePage from './components/page/Homepage';
+import NC1 from './components/page/NC1Exp'
 
-function App() {
+import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
+
+
+const App = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dark-deep to-dark text-light">
-      <Header />
-       <main>
-         <Hero />
-         <Overview />
-         <Methods />
-         <Results />
-         <Team />
-      </main>
-      <Footer />
-
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* Your main routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/nc1-explanation" element={<NC1 />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
-export default App;
-
-
+export default App

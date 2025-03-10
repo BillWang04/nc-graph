@@ -36,7 +36,7 @@ const Hero = () => {
             View Code
           </a>
           <a 
-            href="https://www.overleaf.com/read/tgmcwdvmkgkc#fe6839" 
+            href="https://drive.google.com/file/d/1W8zgWFoXlCthuHr38AIckD6hyeY-LKIz/view?usp=sharing" 
             target="_blank" 
             rel="noopener noreferrer"
             className="px-8 py-3 bg-gradient-to-r from-secondary to-tertiary text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
@@ -51,6 +51,7 @@ const Hero = () => {
                 <svg className="w-10 h-10 text-gray-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
+                {/* <img src="https://icon-library.com/images/scroll-down-icon-png/scroll-down-icon-png-28.jpg" width="80px" height="" className="filter sepia animate-bounce" ></img> */}
             </div>
         </div>
       </div>

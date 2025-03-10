@@ -1,5 +1,13 @@
 import React from 'react';
 
+import SBM from "../../img/method_img/SBM_viz.png"
+
+import CORA from "../../img/method_img/CORA_viz.png"
+
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+
+
 const Methods = () => {
   return (
     <section id="methods" className="py-20 px-6 bg-dark-deep bg-opacity-50">
@@ -10,163 +18,220 @@ const Methods = () => {
           </span> & Approach
         </h2>
         
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Model Architectures */}
-          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-8 border border-gray-800 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+        {/* Models & Metrics Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold mb-8 text-white">Models & Metrics</h3>
+          
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            {/* Message-Passing Neural Networks */}
+            <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-gray-800">
+              <h4 className="text-xl font-semibold mb-3 text-primary">Message-Passing Neural Networks</h4>
+              <p className="text-gray-300 mb-3">
+                At each layer, a node's representation is passed to its neighbors. Graph topology serves as a strong inductive bias, and the expressive power is bounded by the 1-Weisfeiler Lehman test.
+              </p>
+              <ul className="space-y-2 text-gray-300 mt-4">
+                <li className="flex items-start">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
+                    <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  </span>
+                  <span><strong className="text-white">GCN</strong> - Graph Convolutional Network</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
+                    <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                  </span>
+                  <span><strong className="text-white">GIN</strong> - Graph Isomorphism Network</span>
+                </li>
+              </ul>
             </div>
             
-            <h3 className="text-xl font-semibold mb-3">Model Architectures</h3>
-            
-            <p className="text-gray-300 mb-4">
-              We analyze a variety of graph learning models including GAT, GIN, and Graph Transformers, comparing their neural collapse characteristics.
-            </p>
-            
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Graph Attention Network (GAT)</strong> - Uses attention mechanisms to weigh neighbor importance
-                </span>
-              </li>
-              
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Graph Isomorphism Network (GIN)</strong> - Maximizes expressiveness for graph isomorphism tasks
-                </span>
-              </li>
-              
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-indigo-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Graph Transformer</strong> - Extends transformer architecture to graph-structured data
-                </span>
-              </li>
-            </ul>
+            {/* Graph Transformers */}
+            <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-gray-800">
+              <h4 className="text-xl font-semibold mb-3 text-secondary">Graph Transformers</h4>
+              <p className="text-gray-300 mb-3">
+                A standard transformer applied on top of node features, with graph topology encoded and concatenated to those features. Graph topology has a weaker influence on outputs, and nodes can access information from anywhere in the graph.
+              </p>
+              <div className="mt-4">
+                <h5 className="font-semibold text-white mb-2">Laplacian Eigenvector Positional Encoding:</h5>
+                <p className="text-gray-300">
+                  A node's encoding is its associated value across the first n eigenvectors of the Laplacian Matrix, which reflects graph connectivity.
+                </p>
+              </div>
+            </div>
           </div>
           
-          {/* Neural Collapse Metrics */}
-          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-8 border border-gray-800 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
+         {/* Neural Collapse Metrics */}
+          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-gray-800">
+            <h4 className="text-xl font-semibold mb-3 text-tertiary">Neural Collapse Metrics</h4>
+            <p className="text-gray-300 mb-4">
+              Throughout training, we measure the following Neural Collapse metrics:
+            </p>
+            <div className="grid md:grid-cols-4 gap-4">
+              <div className="flex flex-col">
+                <div className="flex items-start">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
+                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                  </span>
+                  <strong className="text-white">NC₁ := Tr(Σ<sub>W</sub>Σ<sub>B</sub><sup>†</sup>)/K</strong>
+                </div>
+                <p className="mt-2 text-sm text-gray-300 pl-8">Primary variability collapse metric measuring within-class (Σ<sub>W</sub>) vs between-class (Σ<sub>B</sub>) variation</p>
+              </div>
+              
+              <div className="flex flex-col">
+                <div className="flex items-start">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
+                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                  </span>
+                  <strong className="text-white">ÑC₁ := Tr(Σ<sub>W</sub>)/Tr(Σ<sub>B</sub>)</strong>
+                  <a href="/nc1-explanation" className="ml-2 text-xs text-primary hover:text-primary-light underline">
+            (Interactive Explanation)
+          </a>
+                </div>
+                <p className="mt-2 text-sm text-gray-300 pl-8">Alternative formulation that is more amenable to theoretical analysis</p>
+              </div>
+              
+              <div className="flex flex-col">
+                <div className="flex items-start">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
+                    <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                  </span>
+                  <strong className="text-white">NC₂ := 1/(K²-K) ∑<sub>k≠k'∈[K]</sub>|cos(μ̄<sub>k</sub>, μ̄<sub>k'</sub>)+1/(K-1)|</strong>
+                </div>
+                <p className="mt-2 text-sm text-gray-300 pl-8">Measures how close class means are to forming a simplex ETF</p>
+              </div>
+
+              <div className="flex flex-col">
+              <div className="flex items-start">
+                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
+                  <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
+                </span>
+                <strong className="text-white">NC₃ := ||W̃ - M̃||<sub>F</sub></strong>
+              </div>
+              <p className="mt-2 text-sm text-gray-300 pl-8">Measures alignment between classifier weights and class means</p>
+            </div>
+
+              
             </div>
             
-            <h3 className="text-xl font-semibold mb-3">Neural Collapse Metrics</h3>
             
-            <p className="text-gray-300 mb-4">
-              We track several metrics related to the Neural Collapse phenomenon, measuring both within-class variability and between-class separation.
-            </p>
-            
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Within-class covariance matrix (Σ<sub>W</sub>)</strong> - Measures the average spread of features within each class
-                </span>
-              </li>
-              
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Between-class covariance matrix (Σ<sub>B</sub>)</strong> - Captures the separation between different class centers
-                </span>
-              </li>
-              
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-pink-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">NC<sub>1</sub> metrics</strong> - Trace ratio metrics derived from these covariance matrices
-                </span>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Experimental Setup */}
-          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-8 border border-gray-800 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center mb-6">
-              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
-              </svg>
-            </div>
-            
-            <h3 className="text-xl font-semibold mb-3">Experimental Setup</h3>
-            
-            <p className="text-gray-300 mb-4">
-              Our experiments use stochastic block model (SBM) graphs and real-world datasets to evaluate collapse characteristics across different architectures.
-            </p>
-            
-            <ul className="space-y-3 text-gray-300">
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Stochastic Block Model graphs</strong> - Synthetic graphs with controlled community structure
-                </span>
-              </li>
-              
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Training methodology</strong> - Multiple runs with different seeds to ensure statistical significance
-                </span>
-              </li>
-              
-              <li className="flex items-start">
-                <span className="flex-shrink-0 w-5 h-5 rounded-full bg-red-500 bg-opacity-20 flex items-center justify-center mr-3 mt-0.5">
-                  <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-                </span>
-                <span>
-                  <strong className="text-white">Metric tracking</strong> - Collecting collapse metrics across all training epochs
-                </span>
-              </li>
-            </ul>
           </div>
         </div>
         
-        {/* Code Implementation */}
-        <div className="mt-16 bg-dark bg-opacity-70 rounded-xl p-8 border border-gray-800">
-          <h3 className="text-2xl font-semibold mb-4 text-center">Implementation Details</h3>
+        {/* Datasets Section */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-semibold mb-8 text-white">Datasets</h3>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          {/* Graph Datasets Introduction */}
+          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl p-6 border border-gray-800 mb-8">
+            <h4 className="text-xl font-semibold mb-3 text-primary">Graph Datasets</h4>
+            <p className="text-gray-300">
+              We worked with two key datasets to investigate neural collapse phenomena across different graph learning architectures.
+            </p>
+          </div>
+          
+          {/* Stochastic Block Model */}
+          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 mb-12">
+            <h4 className="text-xl font-semibold p-6 text-primary">Stochastic Block Model (SBM)</h4>
+            
+            <div className="md:flex">
+              {/* Left: Image */}
+              <div className="md:w-1/2 bg-gray-900 p-4 flex justify-center items-center">
+                <img 
+                  src={SBM}
+                  alt="SBM Graph Visualization" 
+                  className="max-w-full max-h-96 object-contain" 
+                />
+              </div>
+              
+              {/* Right: Details */}
+              <div className="md:w-1/2 p-6">
+                <p className="text-gray-300 mb-4">
+                    Synthetic graphs with tunable community structures, providing an ideal, controllable setting for classification.
+                </p>
+                <div className="text-sm text-gray-400">
+                  <p className="font-semibold text-white mb-2">Training Setup: Fully-supervised node classification</p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>MPNNs: 1000 training, 1000 validation graphs</li>
+                    <li>Graph Transformers: 500 training, 500 validation graphs</li>
+                    <li>Parameters: N=1000 nodes, C=2 communities, p=0.025, q=0.0017</li>
+                    <li>Both models reach 99%+ train and test accuracy</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* CORA Citation Network */}
+          <div className="bg-dark bg-opacity-60 backdrop-filter backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800">
+            <h4 className="text-xl font-semibold p-6 text-secondary">CORA Citation Network</h4>
+            
+            <div className="md:flex">
+              {/* Left: Image */}
+
+              <div className="md:w-1/2 p-6">
+                <p className="text-gray-300 mb-4">
+                  A citation network where nodes represent scientific publications across 7 research fields, and edges represent citations between papers.
+                </p>
+                <div className="text-sm text-gray-400">
+                  <p className="font-semibold text-white mb-2">Training Setup: Semi-supervised node classification</p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>2708 nodes (papers), 5429 edges (citations)</li>
+                    <li>7 classes (research fields)</li>
+                    <li>GCNs reached ~75% accuracy</li>
+                    <li>Graph Transformers peaked at ~60% accuracy</li>
+                  </ul>
+                </div>
+              </div>
+              
+              
+              {/* Right: Details */}
+              
+            
+
+
+              <div className="md:w-1/2 bg-gray-900 p-4 flex justify-center items-center">
+                <img 
+                  src={CORA}
+                  alt="CORA Graph Visualization" 
+                  className="max-w-full max-h-96 object-contain" 
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Experimental Setup */}
+        <div className="mt-16 bg-dark bg-opacity-70 rounded-xl p-8 border border-gray-800">
+          <h3 className="text-2xl font-semibold mb-6 text-center">Experimental Setup</h3>
+          
+          <div className="grid md:grid-cols-3 gap-8">
             <div>
-              <h4 className="text-xl font-semibold mb-3 text-primary">Code Framework</h4>
-              <p className="text-gray-300 mb-3">
-                Our implementation builds upon the code from "A Neural Collapse Perspective on Feature Evolution in Graph Neural Networks," extending it with transformer architectures.
-              </p>
+              <h4 className="text-xl font-semibold mb-3 text-primary">SBM Generation</h4>
               <p className="text-gray-300">
-                We've implemented various graph transformer variants and developed custom metrics to track neural collapse phenomena during training.
+                We worked with Stochastic Block Models (SBM) to generate synthetic graphs with tunable community structures. These provide an ideal, controllable setting for classification tasks where we can precisely measure neural collapse properties.
+              </p>
+              <p className="text-gray-300 mt-3">
+                Well-separated SBMs are trivial to classify, enabling us to test neural collapse in an ideal setting before applying to real-world data.
               </p>
             </div>
             
             <div>
-              <h4 className="text-xl font-semibold mb-3 text-secondary">Training Process</h4>
-              <p className="text-gray-300 mb-3">
-                We train each model until convergence and continue training well past the point of zero training error to observe the terminal phase behavior.
-              </p>
+              <h4 className="text-xl font-semibold mb-3 text-secondary">Training Methodology</h4>
               <p className="text-gray-300">
-                For each architecture, we track both standard performance metrics and the neural collapse metrics throughout the entire training process.
+                For fully-supervised node classification, train/test splitting is done at the graph level. The data consists of three sets: training, validation, and test graphs.
+              </p>
+              <p className="text-gray-300 mt-3">
+                We use a large validation set specifically for neural collapse evaluations to ensure statistical significance of our measurements across different model architectures.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-xl font-semibold mb-3 text-tertiary">Metrics Tracking</h4>
+              <p className="text-gray-300">
+                Throughout training, we measure NC₁ and occasionally NC₂-₃ using the metrics shown above. We also track the traces of Σ<sub>W</sub> and Σ<sub>B</sub> separately to see the change in variability of each of these matrices independently.
+              </p>
+              <p className="text-gray-300 mt-3">
+                This allows us to determine whether neural collapse is occurring due to decreasing within-class variation, increasing between-class separation, or both.
               </p>
             </div>
           </div>

@@ -12,7 +12,7 @@ const NeuralCollapse3D = () => {
   
   const numClasses = 3;
   const pointsPerClass = 20;
-  const axisLength = 500;
+  const axisLength = 200;
   const gridSize = 30;
   const numGridLines = 10;
   
