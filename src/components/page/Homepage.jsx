@@ -9,6 +9,7 @@ import Methods from '../sections/Methods';
 import Results from '../sections/Results';
 import Team from '../sections/Team';
 
+
 // Modified RevealSection that works in both scroll directions
 const RevealSection = ({ children, threshold = 0.2 }) => {
     const [ref, inView] = useInView({
@@ -35,24 +36,31 @@ const RevealSection = ({ children, threshold = 0.2 }) => {
       <div className="min-h-screen bg-gradient-to-br from-dark-deep to-dark text-light">
         <Header />
         <main>
-          {/* Hero is typically always visible */}
           <Hero />
           
-          <RevealSection>
-            <Overview />
-          </RevealSection>
+          <div id="overview">
+            <RevealSection>
+              <Overview />
+            </RevealSection>
+          </div>
           
-          <RevealSection>
-            <Methods />
-          </RevealSection>
+          <div id="methods">
+            <RevealSection>
+              <Methods />
+            </RevealSection>
+          </div>
           
-          <RevealSection>
-            <Results />
-          </RevealSection>
+          <div id="results">
+            <RevealSection>
+              <Results />
+            </RevealSection>
+          </div>
           
-          <RevealSection>
-            <Team />
-          </RevealSection>
+          <div id="team">
+            <RevealSection>
+              <Team />
+            </RevealSection>
+          </div>
         </main>
         <Footer />
       </div>

@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
+import { HashLink } from 'react-router-hash-link';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const navItems = [
-    { name: 'Overview', href: './#overview' },
-    { name: 'Methods', href: './#methods' },
-    { name: 'Results', href: './#results' },
-    { name: 'Team', href: './#team' },
+    { name: 'Overview', href: '../#overview' },
+    { name: 'Methods', href: '../#methods' },
+    { name: 'Results', href: '../#results' },
+    { name: 'Team', href: '../#team' },
   ];
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -19,13 +23,14 @@ const Navigation = () => {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex space-x-10">
         {navItems.map((item) => (
-          <a 
+          <HashLink 
             key={item.name} 
-            href={item.href} 
+            to={item.href} 
             className="nav-link"
+            scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })}
           >
             {item.name}
-          </a>
+          </HashLink>
         ))}
       </nav>
       
@@ -63,21 +68,22 @@ const Navigation = () => {
         <div className="absolute top-full left-0 right-0 bg-dark-deep bg-opacity-95 backdrop-blur-md md:hidden">
           <div className="flex flex-col px-6 py-4 space-y-4">
             {navItems.map((item) => (
-              <a
+              <HashLink
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-white hover:text-primary py-2"
-                onClick={() => setIsOpen(false)}
+                onClick={closeMenu}
+                scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })}
               >
                 {item.name}
-              </a>
+              </HashLink>
             ))}
             <a 
               href="https://github.com/spiegel21/graph_transformer_collapse/tree/calebs_transformer" 
               target="_blank" 
               rel="noopener noreferrer"
               className="btn-primary inline-block text-center py-2"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
             >
               GitHub Repo
             </a>

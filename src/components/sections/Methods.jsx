@@ -83,9 +83,12 @@ const Methods = () => {
                     <span className="w-2 h-2 bg-pink-500 rounded-full"></span>
                   </span>
                   <strong className="text-white">ÑC₁ := Tr(Σ<sub>W</sub>)/Tr(Σ<sub>B</sub>)</strong>
-                  <a href="/nc-graph/nc1-explanation" className="ml-2 text-xs text-primary hover:text-primary-light underline">
-            (Interactive Explanation)
-          </a>
+                  <Link 
+                        to="/nc1-explanation" 
+                        className="ml-2 text-xs text-primary hover:text-primary-light underline"
+                      >
+                        (Interactive Explanation)
+                      </Link>
                 </div>
                 <p className="mt-2 text-sm text-gray-300 pl-8">Alternative formulation that is more amenable to theoretical analysis</p>
               </div>
