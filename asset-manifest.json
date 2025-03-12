@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/nc-graph/static/css/main.77be47e5.css",
-    "main.js": "/nc-graph/static/js/main.568f2e50.js",
+    "main.js": "/nc-graph/static/js/main.dc74d242.js",
     "static/js/453.50de4033.chunk.js": "/nc-graph/static/js/453.50de4033.chunk.js",
     "static/media/cora_vc_final.png": "/nc-graph/static/media/cora_vc_final.993d0b3e385aab3b45df.png",
     "static/media/CORA_viz.png": "/nc-graph/static/media/CORA_viz.8ec458235b1da2c412a9.png",
@@ -11,11 +11,11 @@
     "static/media/gt_nc1.png": "/nc-graph/static/media/gt_nc1.2906463eaa35f4bc7ac7.png",
     "index.html": "/nc-graph/index.html",
     "main.77be47e5.css.map": "/nc-graph/static/css/main.77be47e5.css.map",
-    "main.568f2e50.js.map": "/nc-graph/static/js/main.568f2e50.js.map",
+    "main.dc74d242.js.map": "/nc-graph/static/js/main.dc74d242.js.map",
     "453.50de4033.chunk.js.map": "/nc-graph/static/js/453.50de4033.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.77be47e5.css",
-    "static/js/main.568f2e50.js"
+    "static/js/main.dc74d242.js"
   ]
 }
