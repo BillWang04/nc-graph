@@ -204,7 +204,7 @@ const NC1Explanation = () => {
       </h2>
       <p className="text-gray-300 mb-8">
         NC1 measures the ratio of within-class variability to between-class separation.
-        Lower values indicate stronger neural collapse.
+        Lower values indicate stronger NC1 Collapse.
       </p>
       
       <div className="flex flex-wrap gap-6 mb-8">
@@ -371,11 +371,11 @@ const NC1Explanation = () => {
             <div className="mb-6">
               <p className="font-medium text-white mb-2">Interpretation:</p>
               {nc1 < 0.3 ? (
-                <p className="text-green-400">Strong neural collapse - features are well separated by class</p>
+                <p className="text-green-400">Strong NC1 - features are well separated by class</p>
               ) : nc1 < 0.7 ? (
-                <p className="text-yellow-400">Partial neural collapse - some class separation but with overlap</p>
+                <p className="text-yellow-400">Partial NC1 - some class separation but with overlap</p>
               ) : (
-                <p className="text-red-400">Weak or no neural collapse - high within-class variance relative to between-class separation</p>
+                <p className="text-red-400">Weak or no NC1 - high within-class variance relative to between-class separation</p>
               )}
             </div>
             
@@ -405,7 +405,7 @@ const NC1Explanation = () => {
         <div className="bg-dark-light bg-opacity-20 p-4 rounded-lg border border-gray-700">
           <h3 className="font-medium mb-2 text-primary">Within-Class Covariance</h3>
           <p className="text-sm text-gray-300 mb-4">
-            Measures how spread out the features are within each class. During neural collapse, 
+            Measures how spread out the features are within each class. During NC1, 
             this value approaches zero as features within each class converge to their mean.
           </p>
           
